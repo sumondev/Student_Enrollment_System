@@ -28,7 +28,7 @@
         <div class="content-wrapper full-page-wrapper d-flex align-items-center auth-pages">
           <div class="card col-lg-4 mx-auto">
             <div class="card-body px-5 py-5">
-              <h3 class="card-title text-left mb-3">Login</h3>
+              <h3 class="card-title text-left mb-3">Admin Login</h3>
 
           
                     {{-- This part is used for view message Emain or password is not correct --}}
@@ -106,4 +106,3 @@
 
 
 
-asset

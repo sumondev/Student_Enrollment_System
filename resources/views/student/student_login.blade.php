@@ -18,9 +18,8 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="{{asset('admin/images/favicon.html')}}" />
 </head>
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html>
-
 
 <body class="sidebar-dark">
   <div class="container-scroller">
@@ -29,15 +28,38 @@
         <div class="content-wrapper full-page-wrapper d-flex align-items-center auth-pages">
           <div class="card col-lg-4 mx-auto">
             <div class="card-body px-5 py-5">
-              <h3 class="card-title text-left mb-3">Login</h3>
-              <form>
+              <h3 class="card-title text-left mb-3">Student Login</h3>
+
+          
+                    {{-- This part is used for view message Emain or password is not correct --}}
+                  <p class="alert-danger" style="font-size:20px;color:#FFFFFF; background:#E91919;">
+
+                    <?php
+                 
+                $message=Session::get('message');
+                if ($message) {
+
+                  echo $message;
+                  Session::put('message',null);
+                }
+
+                ?>
+
+
+              </p>
+
+                <form method="post" action="{{url('/studentlogin') }}">  
+             
+               
+
+                {{csrf_field()}}
                 <div class="form-group">
                   <label>Username or email *</label>
-                  <input type="text" class="form-control p_input">
+                  <input type="email" class="form-control p_input" name="student_email" placeholder=" student Email" required="">
                 </div>
                 <div class="form-group">
                   <label>Password *</label>
-                  <input type="text" class="form-control p_input">
+                  <input type="password" class="form-control p_input" name="student_password" placeholder="student Password" required="">
                 </div>
                 <div class="form-group d-flex align-items-center justify-content-between">
                   <div class="icheck-square">
@@ -48,6 +70,7 @@
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                  {{-- Log in for submit  --}}
                 </div>
                 <div class="d-flex justify-content-center mb-4">
                   <a href="#" class="facebook-login btn btn-facebook mr-2">Facebook</a>
@@ -59,6 +82,8 @@
           </div>
         </div>
         <!-- content-wrapper ends -->
+        
+
       </div>
       <!-- row ends -->
     </div>
@@ -71,7 +96,6 @@
   <script src="{{asset('admin/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"> </script>
   <script src="{{asset('admin/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js')}}"></script>
   
-  
   <script src="{{asset('admin/js/off-canvas.js')}}"></script>
   <script src="{{asset('admin/js/hoverable-collapse.js')}}"></script>
   <script src="{{asset('admin/js/misc.js')}}"></script>
@@ -81,5 +105,6 @@
 
 
 </html>
+
 
 

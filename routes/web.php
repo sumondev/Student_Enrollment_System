@@ -11,8 +11,11 @@
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('student_login');
+    return view('student.student_login');
+    /*student login part dafault route*/
 });
 
 // Route::get('/backend', function () {
@@ -22,10 +25,10 @@ Route::get('/', function () {
 
 /*AdminController routing start from here*/
 
-/*route for dashboard*/
+/*route for login*/
 Route::get ('/backend','AdminController@admin_login'); 
 
-/*route for admin_login*/
+/*route for admin_login_dashboard*/
 Route::post ('/adminlogin','AdminController@login_dashbord'); 
 
 
@@ -46,6 +49,20 @@ Route::get ('/settings','AdminController@settings');
 
 
 
+/*studentloginContoller part satart here*/
+
+
+/*route for Student_login_from*/
+Route::post ('/studentlogin','StudentloginController@student_login_dashboard');
+/*route for Student_login_dashboard*/
+Route::get ('/student_dashboard','StudentloginController@student_dashboard'); 
+
+
+
+
+
+
+/*studentloginContoller part over here*/
 
 /*student part start here*/
 

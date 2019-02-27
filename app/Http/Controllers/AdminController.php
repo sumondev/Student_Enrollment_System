@@ -15,7 +15,7 @@ class AdminController extends Controller
 
 
 /*here admin log in works as a get method*/
-   public function login_dashbord(Request $request) {
+public function login_dashbord(Request $request) {
 
 
 
