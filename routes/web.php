@@ -60,6 +60,14 @@ Route::get ('/student_dashboard','StudentloginController@student_dashboard');
 
 
 
+/*view profile route*/
+Route::get ('/view_profile','StudentloginController@profile'); 
+
+/*setting routing here*/
+Route::get ('/settings','StudentloginController@settings'); 
+
+/*log out route*/
+Route::get ('/Log_out','StudentloginController@student_logout'); 
 
 
 /*studentloginContoller part over here*/

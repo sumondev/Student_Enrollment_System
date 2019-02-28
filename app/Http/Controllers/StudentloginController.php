@@ -67,6 +67,19 @@ class StudentloginController extends Controller
        }
 
 
+          /*log out function*/
+        public function student_logout(){
+
+       
+        session::put('student_name',null);
+          session::put('student_id',null);
+
+          return Redirect::to('/'); 
+
+
+       }
+
+
 
 
 

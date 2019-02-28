@@ -42,7 +42,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar navbar-light col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="{{URL::TO('/admin_dashboard')}}"><img src="admin/images/dash.png" alt="Logo"></a>
+        {{-- <a class="navbar-brand brand-logo" href="{{URL::TO('/admin_dashboard')}}"><img src="admin/images/dash.png" alt="Logo"></a> --}}
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
