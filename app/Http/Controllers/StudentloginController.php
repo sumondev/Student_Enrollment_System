@@ -25,13 +25,6 @@ class StudentloginController extends Controller
       ->where('student_password',$password)
       ->first();
 
-
-
-
-
-
-
-
    // return view('student.student_dashboard');
 
    
@@ -41,7 +34,9 @@ class StudentloginController extends Controller
 
    		if ($result) {
 
-   			Session::put('message','You are sucessfully login to your dashboard');
+        Session::put('student_email',$result->student_email);
+        Session::put('student_id',$result->student_id);
+        Session::put('message','You are sucessfully login to your student dashboard');
 
    			return Redirect::to('/student_dashboard'); 
    		}
@@ -67,17 +62,83 @@ class StudentloginController extends Controller
        }
 
 
-          /*log out function*/
+          /* student log out function*/
         public function student_logout(){
 
        
-        session::put('student_name',null);
-          session::put('student_id',null);
+        Session::put('student_name',null);
+          Session::put('student_id',null);
 
           return Redirect::to('/'); 
 
 
        }
+              /* student log out function*/
+
+         public function studentsettings(){
+
+
+        
+        return view('student.student_settings');
+
+
+       }
+          /* student view profile  function*/
+
+      //    public function student_view_profile(){
+
+
+
+      // //  $student_id = Session::get('student_id')
+      // // $std_profile=DB::table('student_tbl')
+      // //              ->select('*')
+      // //              ->where('student_id',$student_id)
+      // //              ->first();
+
+      // //           echo "</pre>";
+      // //           print_r($std_profile);
+
+      // //               echo "</pre>";
+
+      //     // $manage_view_student=view('student.std_profile')
+      //     //     ->with('student_description_profile',$std_profile); 
+      //     //      // student_description_profile is uded for  student profile view main representator in view page
+      //     //   return view('student_layout')
+      //     //   ->with('view_student',$manage_view_student);  
+       
+         
+      //   // return view('student.std_profile');
+
+      //     echo "string";
+
+
+      //  }
+
+
+       public function student_view_profile(){
+
+        // return view('student.student_profile');
+
+
+
+      $student_id=Session::get('student_id');
+      $student_profile_view=DB::table('student_tbl')
+                   ->select('*')
+                   ->where('student_id',$student_id)
+                   ->first();
+
+                // echo "</pre>";
+                // print_r($student_profile_view);
+                //     echo "</pre>";
+
+          $manage_student=view('student.student_profile')
+              ->with('student_description_profile',$student_profile_view); 
+               // student_description_profile is uded for  student profile view main representator in view page
+            return view('student.student_layout')
+            ->with('student_profile',$manage_student);  
+
+     
+    }
 
 
 

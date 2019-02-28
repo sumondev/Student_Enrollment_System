@@ -1,3 +1,22 @@
+
+@php
+  $student_id=Session::get('student_id');
+      $student_profile_view=DB::table('student_tbl')
+                   ->select('*')
+                   ->where('student_id',$student_id)
+                   ->first();
+
+                   /* this function is used for retriving student information in this page  from databse*/
+@endphp
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +61,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar navbar-light col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
-        {{-- <a class="navbar-brand brand-logo" href="{{URL::TO('/admin_dashboard')}}"><img src="admin/images/dash.png" alt="Logo"></a> --}}
+        <a class="navbar-brand brand-logo" href="{{URL::TO('/student_dashboard')}}"><img src="admin/images/dash.png" alt="Logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
@@ -82,7 +101,7 @@
               {{-- <span class="mdi mdi-filter-list"></span> --}}
             </a>
             <div class="dropdown-menu navbar-dropdown mail-notification" aria-labelledby="MailDropdown">
-              <a class="dropdown-item" href="{{URL::TO('/view_profile')}}">
+              <a class="dropdown-item" href="{{URL::TO('/student_profile')}}">
                 <div class="sender-img">
                   <img src="/admin/images/profile.png" alt="">
                
@@ -93,7 +112,7 @@
                 </div>
               </a>
               
-              <a class="dropdown-item" href="{{URL::TO('/settings')}}">
+              <a class="dropdown-item" href="{{URL::TO('/studentsettings')}}">
                 <div class="sender-img">
                   <img src="/admin/images/settings.png" alt="">
              
@@ -104,7 +123,7 @@
                 </div>
               </a>
 
-               <a class="dropdown-item" href="{{URL::TO('/Log_out')}}">
+               <a class="dropdown-item" href="{{URL::TO('/studentLogout')}}">
                 <div class="sender-img">
                   <img src="/admin/images/logout.png" alt="">
             
@@ -130,11 +149,13 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <div class="user-info">
             <div class="profile">
-              <img src="admin/images/pro1.png" alt="">
+       {{--        <img src="admin/images/pro1.png" alt=""> --}}
+              <img src={{ $student_profile_view->student_image }} alt="">
+             {{-- <p class="user-name">{{ $student_profile_view->student_image }}</p> --}}
             </div>
             <div class="details">
-              <p class="user-name">Sumon</p>
-              <p class="designation">Developer</p>
+              <p class="user-name">{{ strtoupper($student_profile_view->student_name)  }}</p>
+              <p class="designation">{{-- Developer --}}</p>
             </div>
           </div>
           <ul class="nav">
@@ -143,19 +164,19 @@
               <span class="nav-link">Main</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{URL::TO('/all_student')}}">
+              <a class="nav-link" href="{{URL::TO('/student_profile')}}">
                 <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">All Student</span>
+                <span class="menu-title">profile</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{URL::TO('/add_student')}}">
+              <a class="nav-link" href="{{URL::TO('/studentsettings')}}">
                 <i class="mdi mdi-puzzle menu-icon"></i>
-                <span class="menu-title">Add Student</span>
+                <span class="menu-title">settings</span>
                 <span class="badge badge-danger badge-pill ml-auto">New</span>
               </a>
             </li>
-            <li class="nav-item">
+           {{--  <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#layoutsSubmenu" aria-expanded="false" aria-controls="layoutsSubmenu">
                 <i class="mdi mdi-arrow-expand-all menu-icon"></i>
                 <span class="menu-title">Student Information </span>
@@ -173,7 +194,7 @@
                 </ul>
               </div>
             </li>
-      
+       --}}
             
           
             <!--Apps start-->
