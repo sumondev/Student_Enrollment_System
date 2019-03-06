@@ -69,6 +69,10 @@ Route::get ('/student_profile','StudentloginController@student_view_profile');
 /*setting routing here*/
 Route::get ('/studentsettings','StudentloginController@studentsettings'); 
 
+/*student setting profile update */
+Route::post ('/update_student_profile','StudentloginController@update_student_profile');
+
+
 /*log out route*/
 Route::get ('/studentLogout','StudentloginController@student_logout'); 
 

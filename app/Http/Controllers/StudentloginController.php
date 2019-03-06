@@ -75,45 +75,76 @@ class StudentloginController extends Controller
        }
               /* student log out function*/
 
-         public function studentsettings(){
 
 
         
-        return view('student.student_settings');
+   
 
 
-       }
-          /* student view profile  function*/
+ 
 
-      //    public function student_view_profile(){
+       public function studentsettings(){
+        $student_id=Session::get('student_id');
+
+
+     
+
+
+      $student_description_edit=DB::table('student_tbl')
+                   ->select('*')
+                   ->where('student_id',$student_id)
+                   ->first();
+
+                // echo "</pre>";
+                // print_r($student_description_edit);
+
+                //     echo "</pre>";
+
+          $manage_edit_student=view('student.student_settings')
+              ->with('student_description_edit',$student_description_edit); 
+               // student_description_edit is uded for  student profile view main representator in view page
+            return view('student.student_layout')
+            ->with('student_settings',$manage_edit_student);  
+
+
+          }
 
 
 
-      // //  $student_id = Session::get('student_id')
-      // // $std_profile=DB::table('student_tbl')
-      // //              ->select('*')
-      // //              ->where('student_id',$student_id)
-      // //              ->first();
 
-      // //           echo "</pre>";
-      // //           print_r($std_profile);
+          /*update studenrt profile from setting page*/
 
-      // //               echo "</pre>";
 
-      //     // $manage_view_student=view('student.std_profile')
-      //     //     ->with('student_description_profile',$std_profile); 
-      //     //      // student_description_profile is uded for  student profile view main representator in view page
-      //     //   return view('student_layout')
-      //     //   ->with('view_student',$manage_view_student);  
-       
+    public function update_student_profile(Request $request){
+
+      $student_id=Session::get('student_id');
+
+
+
+     
+        $data=array();
+        
+              $data['student_phone']=$request->student_phone ;
+               $data['student_address']=$request->student_address;
+                 $data['student_password']=$request->student_password;
+              
+
+
+  
+       DB::table('student_tbl')->where('student_id',$student_id)->update($data);
+  
+      // Session::put('message','update Contact Successfully!!'); /*give message when name and id sucessfully update to database*/
+        Session::put('message','Student profile updates sucessfully');
+
+               return Redirect::to('/studentsettings'); 
+
+
+      
+}
+
+
+
          
-      //   // return view('student.std_profile');
-
-      //     echo "string";
-
-
-      //  }
-
 
        public function student_view_profile(){
 
