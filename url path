@@ -1,5 +1,7 @@
 Localhost server :  http://127.0.0.1:8000/admin_dashboard 
 website server: http://www.sumon123.cf/admin_dashboard
 
-
+using /admin_dashboard 
+path you can find out admin panel and here you can add student and teacher . you can also view,update and delete .
+and if you craete and strudent profile then exting student data you can also login home page as student 
 
